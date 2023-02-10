@@ -5,8 +5,7 @@ import Header from './Header';
 
 function App() {
 
-  const [user, setUser] = useState("Felipe");
-
+  const [user, setUser] = useState();
   useEffect(() => {
 
   }, [
@@ -14,7 +13,7 @@ function App() {
   ]);
   return (
     <div className="App">
-    <Header user={user}></Header>
+    <Header setUser={setUser} user={user}></Header>
     </div>
   );
 }

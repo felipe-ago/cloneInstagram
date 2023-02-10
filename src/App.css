@@ -30,12 +30,12 @@ body {
   height: 30px;
 }
 
-.header_logadoInfo{
+.header_logadoInfo {
   text-align: right;
   width: 50%;
 }
 
-.header_logadoInfo a{
+.header_logadoInfo a {
   margin: 10px;
   background-color: #0095f6;
   color: white;
@@ -51,7 +51,7 @@ body {
   text-align: right;
 }
 
-.header_loginForm form{
+.header_loginForm form {
   display: inline-block;
 }
 
@@ -80,6 +80,58 @@ body {
   padding: 0 10px;
 }
 
-.btn_criarConta a{
+.btn_criarConta a {
   font-size: 14px;
+}
+
+.modalCriarConta {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.formCriarConta {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+}
+
+.formCriarConta input {
+  width: 100%;
+  height: 30px;
+  padding-left: 10px;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+}
+
+.formCriarConta input[type="submit"] {
+  background-color: #0095f6;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.closeModalCriar{
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  line-height: 30px;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: #0095f6;
 }
