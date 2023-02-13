@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
-import { auth } from "./firebase.js";
+import firebase from "firebase/compat/app";
+import { auth, storage, db } from "./firebase.js";
 
 function Header(props) {
+  const [progress, setProgress] = useState(0);
+  const [file, setFile] = useState(null);
+
   useEffect(() => {});
 
   function abrirModalCriarConta(e) {
@@ -53,11 +57,62 @@ function Header(props) {
       .signInWithEmailAndPassword(usuario, senha)
       .then((auth) => {
         props.setUser(auth.user.displayName);
-        alert("Logado com Sucesso");
       })
       .catch((err) => {
         alert(err.message);
       });
+  }
+
+  function abrirModalUpload(e) {
+    e.preventDefault();
+    let modal = document.querySelector(".modalUpload");
+
+    modal.style.display = "block";
+  }
+
+  function fecharModalUpload() {
+    let modal = document.querySelector(".modalUpload");
+
+    modal.style.display = "none";
+  }
+
+  function uploadPost(e) {
+    e.preventDefault();
+    let legenda = document.getElementById("legendaUpload");
+    let progressEl = document.getElementById("progressUpload");
+
+    const uploadTask = storage.ref(`images/${file.name}`).put(file);
+
+    uploadTask.on(
+      "state_changed",
+      function (snapshot) {
+        const progress =
+          Math.round(snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        setProgress(progress);
+      },
+      function (error) {},
+      function () {
+        storage
+          .ref("images")
+          .child(file.name)
+          .getDownloadURL()
+          .then(function (url) {
+            db.collection("posts").add({
+              titulo: legenda,
+              image: url,
+              usuario: props.user,
+              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            });
+
+            setProgress(0);
+            setFile(null);
+
+            alert("Upload Realizado com Sucesso!");
+
+            document.getElementById("form-upload").reset();
+          });
+      }
+    );
   }
 
   return (
@@ -84,9 +139,32 @@ function Header(props) {
           </form>
         </div>
       </div>
+
+      <div className="modalUpload">
+        <div className="formUpload">
+          <div onClick={() => fecharModalUpload()} className="closeModalUpload">
+            X
+          </div>
+          <h2>Fazer Upload</h2>
+          <form id="form-upload" onSubmit={(e) => uploadPost(e)}>
+            <progress id="progressUpload" value={progress}></progress>
+            <input
+              onChange={(e) => setFile(e.target.files[0])}
+              type="file"
+              name="file"
+            />
+            <input
+              id="legendaUpload"
+              type="text"
+              placeholder="Legenda da Imagem..."
+            />
+            <input type="submit" value="Postar Arquivo" />
+          </form>
+        </div>
+      </div>
       <div className="center">
         <div className="header_logo">
-          <a href="https://www.instagram.com/">
+          <a href="localhost:3000/">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2560px-Instagram_logo.svg.png" />
           </a>
         </div>
@@ -95,7 +173,9 @@ function Header(props) {
             <span>
               Olá, <b>{props.user}</b>
             </span>
-            <a href="#">Postar!</a>
+            <a onClick={(e) => abrirModalUpload(e)} href="#">
+              Postar!
+            </a>
           </div>
         ) : (
           <div className="header_loginForm">
