@@ -78,7 +78,7 @@ function Header(props) {
 
   function uploadPost(e) {
     e.preventDefault();
-    let legenda = document.getElementById("legendaUpload");
+    let legenda = document.getElementById("legendaUpload").value;
     let progressEl = document.getElementById("progressUpload");
 
     const uploadTask = storage.ref(`images/${file.name}`).put(file);
