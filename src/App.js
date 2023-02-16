@@ -10,7 +10,9 @@ function App() {
 
   useEffect(() => {
     auth.onAuthStateChanged(function (val) {
+      if(val != null){
       setUser(val.displayName);
+      }
     });
     //Atauliza a página do Feed
     db.collection("posts")

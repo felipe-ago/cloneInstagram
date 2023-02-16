@@ -1,5 +1,6 @@
 import { db } from "./firebase.js";
 import { useEffect, useState } from "react";
+import firebase from "firebase/compat/app";
 
 function Post(props) {
   const [comentarios, setComentarios] = useState([]);
@@ -8,6 +9,7 @@ function Post(props) {
     db.collection("posts")
       .doc(props.id)
       .collection("comentarios")
+      .orderBy("timestamp", "desc")
       .onSnapshot(function (snapshot) {
         setComentarios(
           snapshot.docs.map(function (document) {
@@ -24,9 +26,10 @@ function Post(props) {
     db.collection("posts").doc(id).collection("comentarios").add({
       nome: props.user,
       comentario: comentarioAtual,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
 
-    alert("Comentário Postado! " + id);
+    alert("Comentário Postado!");
 
     comentarioAtual = document.querySelector("#comentario-" + id).value = "";
   }
@@ -49,13 +52,17 @@ function Post(props) {
         })}
       </div>
 
-      <form onSubmit={(e) => comentar(props.id, e)} className="comentario">
-        <textarea
-          id={"comentario-" + props.id}
-          placeholder="Deixe aqui o seu comentário..."
-        ></textarea>
-        <input type="submit" value="Comentar!" />
-      </form>
+      {props.user ? (
+        <form onSubmit={(e) => comentar(props.id, e)} className="comentario">
+          <textarea
+            id={"comentario-" + props.id}
+            placeholder="Deixe aqui o seu comentário..."
+          ></textarea>
+          <input type="submit" value="Comentar!" />
+        </form>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 }
