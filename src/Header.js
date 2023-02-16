@@ -57,10 +57,21 @@ function Header(props) {
       .signInWithEmailAndPassword(usuario, senha)
       .then((auth) => {
         props.setUser(auth.user.displayName);
+        window.location.href = "/";
       })
       .catch((err) => {
         alert(err.message);
       });
+  }
+
+  //Logout no Firebase
+
+  function deslogar(e) {
+    e.preventDefault();
+    auth.signOut().then(function (val) {
+      props.setUser(null);
+      window.location.href = "/";
+    });
   }
 
   function abrirModalUpload(e) {
@@ -110,6 +121,8 @@ function Header(props) {
             alert("Upload Realizado com Sucesso!");
 
             document.getElementById("form-upload").reset();
+
+            fecharModalUpload();
           });
       }
     );
@@ -176,6 +189,7 @@ function Header(props) {
             <a onClick={(e) => abrirModalUpload(e)} href="#">
               Postar!
             </a>
+            <a onClick={(e) => deslogar(e)}>Sair</a>
           </div>
         ) : (
           <div className="header_loginForm">

@@ -1,5 +1,5 @@
 import "./App.css";
-import { db } from "./firebase.js";
+import { db, auth } from "./firebase.js";
 import { useEffect, useState } from "react";
 import Header from "./Header";
 import Post from "./Post";
@@ -9,6 +9,9 @@ function App() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
+    auth.onAuthStateChanged(function (val) {
+      setUser(val.displayName);
+    });
     //Atauliza a página do Feed
     db.collection("posts")
       .orderBy("timestamp", "desc")
@@ -26,7 +29,7 @@ function App() {
       <Header setUser={setUser} user={user}></Header>
 
       {posts.map(function (val) {
-        return <Post info={val.info} id={val.id}></Post>;
+        return <Post user={user} info={val.info} id={val.id}></Post>;
       })}
     </div>
   );
