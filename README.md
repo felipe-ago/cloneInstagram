@@ -7,6 +7,7 @@ Clone Instagram é um projeto que basicamente utiliza algumas das funções e ca
 <p align="center">
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-projeto">Instalação Dev</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#memo-licença">Licença</a>
 </p>
 
@@ -36,6 +37,11 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 O Clone Instagram é um projeto de fins educacionais, em que se replica funções e características da rede social, mundialmente conhecida, Instagram. Neste projeto utilizamos como ferramentas de desenvolvimento FrontEnd o HTML, CSS, JavaScript, Node.js e React. Já como ferramenta de BackEnd utilizamos uma API do firebase em JS para que possamos utilizar a ferramenta do Google como o nosso BD.
 
 - [Visite o projeto online](https://instagram-clone-curso-e7a1b.web.app)
+
+## 🛠 Instalação Dev
+
+Segue o link para as instruções de instalação do projeto:
+[Instruções de Instalação](./READMEREACT.md)
 
 ## 📝 Licença
 
