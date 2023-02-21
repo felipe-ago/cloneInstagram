@@ -178,7 +178,7 @@ function Header(props) {
       <div className="center">
         <div className="header_logo">
           <a href="localhost:3000/">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2560px-Instagram_logo.svg.png" />
+            <img src="./LogoSite.png" />
           </a>
         </div>
         {props.user ? (
