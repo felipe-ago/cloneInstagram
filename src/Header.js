@@ -128,6 +128,25 @@ function Header(props) {
     );
   }
 
+  //Dark Mode
+
+  /*const btn = document.getElementById("btnDarkMode");
+
+  btn.addEventListener("change", (e) => {
+    document.body.classList.toggle("dark", e.target.checked);
+    document.head.classList.toggle("dark", e.target.checked);
+  });
+  
+  
+  Deve ser colocado no Return, Junto com o "Criar Conta"
+  
+  <div className="darkMode">
+      <input type="checkbox" id="btnDarkMode" name="btnDakMode" />
+      <label for="btnDarkMode">
+        <i class="fa-solid fa-circle-half-stroke"></i>
+      </label>
+  </div>*/
+
   return (
     <div className="header">
       <div className="modalCriarConta">

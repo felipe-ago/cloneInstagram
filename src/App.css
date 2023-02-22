@@ -6,6 +6,42 @@
 
 body {
   background-color: rgb(220, 220, 220);
+  transition: background 0.5s linear, color 0.5s linear;
+}
+
+.bodyLogoff h1{
+  text-align: center;
+  margin: 20px 0;
+  font-family:Tahoma;
+  transition: background 0.5s linear;
+}
+.bodyLogoff h2{
+  text-align: center;
+  font-family:Tahoma;
+  transition: background 0.5s linear;
+}
+
+.bodyLogoff img{
+  width: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+}
+
+body.dark{
+  background-color: black;
+  color: white;
+}
+
+head.dark{
+  background-color: black;
+  color: white;
+}
+
+body.dark label{
+  background-color: black;
+  color: white;
 }
 
 .center {
@@ -49,6 +85,7 @@ body {
 .header_loginForm {
   width: 50%;
   text-align: right;
+  margin-top: 1%;
 }
 
 .header_loginForm form {
@@ -82,6 +119,15 @@ body {
 
 .btn_criarConta a {
   font-size: 14px;
+}
+
+.darkMode{
+  color: black;
+  display: inline-block;
+}
+
+.darkMode input{
+  visibility: hidden;
 }
 
 .modalCriarConta {

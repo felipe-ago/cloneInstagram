@@ -10,8 +10,8 @@ function App() {
 
   useEffect(() => {
     auth.onAuthStateChanged(function (val) {
-      if(val != null){
-      setUser(val.displayName);
+      if (val != null) {
+        setUser(val.displayName);
       }
     });
     //Atauliza a página do Feed
@@ -33,6 +33,15 @@ function App() {
       {posts.map(function (val) {
         return <Post user={user} info={val.info} id={val.id}></Post>;
       })}
+
+      <div className="bodyLogoff">
+        <h1>Seja Bem Vindo ao Clone-Instagram</h1>
+        <h2>
+          Caso tenha um cadastro acesse com seu e-mail e senha acima, caso
+          contrário, clique em Criar Conta.
+        </h2>
+        <img src="./Home.png" />
+      </div>
     </div>
   );
 }
