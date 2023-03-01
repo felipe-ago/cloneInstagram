@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import firebase from "firebase/compat/app";
 import { auth, storage, db } from "./firebase.js";
+import App from "./App.js";
 
 function Header(props) {
   const [progress, setProgress] = useState(0);
@@ -50,6 +51,7 @@ function Header(props) {
     e.preventDefault();
     let usuario = document.getElementById("usuarioLogin").value;
     let senha = document.getElementById("senhaLogin").value;
+    //let bodyLogoff = document.querySelector("./App.js/.bodyLogoff");
 
     //Login no Firebase
 
@@ -62,6 +64,8 @@ function Header(props) {
       .catch((err) => {
         alert(err.message);
       });
+
+      //bodyLogoff.style.display = "none";
   }
 
   //Logout no Firebase
